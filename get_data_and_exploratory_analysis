@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+coled = pd.read_csv('College_Data',index_col= 0)
+
+sns.scatterplot(data = coled, x='Room.Board',y='Grad.Rate',hue = 'Private', alpha=0.5)  % Room and board costs versus graduation rate
+
+sns.scatterplot(data = coled, x = 'Outstate', y = 'F.Undergrad', hue = 'Private')  % Out of state tuition versus number of full time undergraduates
+
+g = sns.FacetGrid(coled,hue="Private",palette='coolwarm',size=6,aspect=2)   % Histogram of the out of state tuitions segregated in private and public
+g = g.map(plt.hist,'Outstate',bins=20,alpha=0.7)
+
+g = sns.FacetGrid(coled,hue="Private",palette='coolwarm',size=6,aspect=2)   % Histogram of the rate of graduation segregated in private and public
+g = g.map(plt.hist,'Grad.Rate',bins=20,alpha=0.7)
